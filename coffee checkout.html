@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <form action="/submit-order" method="POST">
+            <h2>Product Summary</h2>
+            <ul>
+                <li>Coffee Blend A - 2 x $10.00</li>
+                <li>Coffee Blend B - 1 x $12.00</li>
+            </ul>
+            <h3>Customer Information</h3>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="address">Shipping Address:</label>
+            <input type="text" id="address" name="address" required>
+            <h3>Payment Information</h3>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+            <label for="expiry">Expiry Date:</label>
+            <input type="text" id="expiry" name="expiry" required>
+            <label for="cvc">CVC:</label>
+            <input type="text" id="cvc" name="cvc" required>
+            <button type="submit">Complete Purchase</button>
+        </form>
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <p>Subtotal: $32.00</p>
+            <p>Shipping: $5.00</p>
+            <p>Tax: $2.00</p>
+            <p><strong>Total: $39.00</strong></p>
+        </div>
+    </div>
+</body>
+</html>
