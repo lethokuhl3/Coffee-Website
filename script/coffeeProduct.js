@@ -209,10 +209,36 @@ const product = [{
 
   getItems4();
 
-  const buttonElement = document.querySelectorAll(".button-add")
-  buttonElement.forEach(button => {
-    button.addEventListener("click", function() {
-      const productId = button.getAttribute("data-id");
-      console.log(`button clicked for product id:${productId}`);
-      });
-      });
+let cart = [];
+let cartCount = 0;
+
+function updateCartIcon() {
+  const cartIcon = document.querySelector(".js-cart-quantity");
+  if (cartIcon) {
+    cartIcon.textContent = cartCount;
+  }
+}
+
+function addToCart(productId) {
+  const allProducts = [...product, ...product2, ...product3, ...product4];
+  const productToAdd = allProducts.find((item) => item.id === parseInt(productId));
+
+  if (productToAdd) {
+    cart.push(productToAdd);
+    cartCount += 1;
+    updateCartIcon();
+    console.log(`Added to cart: ${productToAdd.name}`);
+  } else {
+    console.log(`Product with ID ${productId} not found.`);
+  }
+}
+
+const buttonElements = document.querySelectorAll(".button-add");
+buttonElements.forEach((button) => {
+  button.addEventListener("click", function () {
+    const productId = button.getAttribute("data-id");
+    addToCart(productId);
+  });
+});
+
+updateCartIcon();
