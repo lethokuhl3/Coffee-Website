@@ -209,8 +209,10 @@ const product = [{
 
   getItems4();
 
-let cart = [];
-let cartCount = 0;
+localStorage.removeItem("cart");
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartCount = cart.length;
 
 function updateCartIcon() {
   const cartIcon = document.querySelector(".js-cart-quantity");
@@ -224,9 +226,21 @@ function addToCart(productId) {
   const productToAdd = allProducts.find((item) => item.id === parseInt(productId));
 
   if (productToAdd) {
-    cart.push(productToAdd);
+    const existingproduct = cart.find((item) => item.id === productToAdd.id);
+
+    if(existingproduct) {
+      existingproduct.quantity += 1;
+    }else{
+      productToAdd.quantity = 1;
+      cart.push(productToAdd);
+    }
+
     cartCount += 1;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
     updateCartIcon();
+
     console.log(`Added to cart: ${productToAdd.name}`);
   } else {
     console.log(`Product with ID ${productId} not found.`);
