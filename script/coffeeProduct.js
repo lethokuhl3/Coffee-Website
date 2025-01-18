@@ -2,31 +2,31 @@ const product = [{
   "id": 1,
   "image":"images/espresso00.jpg",
   "name": "Espresso",
-  "price":"$15.99(double) / $12.99(single)",
+  "price":"R15.99(double) / $12.99(single)",
   "description":"Espresso: the heart of coffee!",
   }, {
     "id": 2,
     "image": "images/lungo.jpg",
     "name": "Lungo",
-    "price":"$19.99",
+    "price":"R19.99",
     "description":"Creamy perfection in every cup!",
   },{
     "id": 3,
     "image":"images/cppanoshj.jpg" ,
     "name": "Cappuccino",
-    "price":"$19.99",
+    "price":"R19.99",
     "description":"Creamy perfection in every cup!",
   },{
     "id": 4,
     "image":"images/cartado.jpg",
     "name": "Cartado",
-    "price":"$19.99",
+    "price":"R19.99",
     "description":"Creamy perfection in every cup!",
   },{
     "id": 5,
     "image":"images/amerricao.jpg",
     "name": "Americcano",
-    "price":"$19.99",
+    "price":"R19.99",
     "description":"Creamy perfection in every cup!",
   }]
 
@@ -34,31 +34,31 @@ const product = [{
     "id": 6,
     "image": "images/drip coffee.jpg",
     "name": "Drip Coffee",
-    "price": "$15.99",
+    "price": "R15.99",
     "description": "Awaken your senses with every drop!"
   },{
     "id": 7,
     "image": "images/cold brew.jpg",
     "name": "Cold Brew",
-    "price": "$14.99",
+    "price": "R14.99",
     "description": "Smooth, rich flavour-no heat required!"
   },{
     "id": 8,
     "image": "images/iced coffee.jpg",
     "name": "Iced Coffee",
-    "price": "$16.99",
+    "price": "R16.99",
     "description": "Sip into summer with every glass!"
   },{
     "id": 9,
     "image": "images/nitro coffee.jpg",
     "name": "Nitro Coffee",
-    "price": "$16.99",
+    "price": "R16.99",
     "description": "Cold brew, nitro infused!"
   },{
     "id": 10,
     "image": "images/tr.jpg",
     "name" : "Turkish Coffee",
-    "price" : "$19.99",
+    "price" : "R19.99",
     "description" : "Experience the rich heritage of Turkish coffee!"
   }]
 
@@ -66,31 +66,31 @@ const product = [{
     "id": 11,
     "image": "images/Affogato.jpg",
     "name": "Affogato",
-    "price": "$15.99",
+    "price": "R15.99",
     "description": "Espresso meets ice cream—pure magic!"
   },{
     "id": 12,
     "image": "images/nitro cold brew.jpg",
     "name": "Nitro Cold Brew",
-    "price": "$14.99",
+    "price": "R14.99",
     "description": "Chill out with a smooth, nitrogen-infused brew!"
   },{
     "id": 13,
     "image": "images/dalgona.jpg" ,
     "name": "Dalgona Coffee",
-    "price": "$16.99",
+    "price": "R16.99",
     "description": "Elevate your coffee game with a whipped twist!"
   },{
     "id": 14,
     "image": "images/macchiato.jpg",
     "name": "Macchiato",
-    "price": "$16.99",
+    "price": "R16.99",
     "description": "Taste the balance of strength and creaminess."
   },{
     "id": 15,
     "image": "images/Ristretto.jpg",
     "name" : "Ristretto",
-    "price" : "$12.99",
+    "price" : "R12.99",
     "description" : "Savor the strength of a ristretto."
   }]
 
@@ -98,31 +98,31 @@ const product = [{
     "id": 16,
     "image" :"images/beer.jpg",
     "name": "Beer",
-    "price": "$15.99",
+    "price": "R15.99",
     "description": "Crafted with passion, enjoyed with friends."
   },{
     "id": 17,
     "image": "images/wine.jpg",
     "name": "Red Wine",
-    "price": "$14.99",
+    "price": "R14.99",
     "description": "Elevate your evenings with a glass of red."
   },{
     "id": 18,
     "image": "images/herbal tea.jpg" ,
     "name": "Herbal Tea",
-    "price": "$16.99",
+    "price": "R16.99",
     "description": "Sip your way to tranquility with our herbal teas!"
   },{
     "id": 19,
     "image": "images/green juice.jpg" ,
     "name": "Green Juice",
-    "price": "$17.99",
+    "price": "R17.99",
     "description": "Nourish your body, energize your life!"
   },{
     "id": 20,
     "image": "images/mocktail.jpg" ,
     "name" : "MockTail",
-    "price" : "$12.99",
+    "price" : "R12.99",
     "description" : "Raise your glass to guilt-free indulgence!"
   }]
 
