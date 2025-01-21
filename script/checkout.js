@@ -1,48 +1,3 @@
-
-// Function to display the checkout form
-function displayCheckoutForm() {
-    // Example product data (replace with dynamic data from your cart)
-        const products = [{"id": 1, "name": "Espresso", "price": 15.99, "quantity": 2}, {"id": 2, "name": "Lungo", "price": 19.99, "quantity": 1}];
-
-    // Generate the product summary HTML
-    let productSummaryHtml = `<h2 class = js-products-summary>Product Summary</h2><ul>`;
-    products.forEach(product => {
-        productSummaryHtml += `<li>${product.name} - ${product.quantity} x R${product.price.toFixed(2)}</li>`;
-    });
-    productSummaryHtml += `</ul>`;
-
-    // Generate the customer and payment information form
-    const checkoutFormHtml = `
-        ${productSummaryHtml}
-        <h3>Customer Information</h3>
-        <form id="checkoutForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <h3>Payment Information</h3>
-            <label for="card-number">Card Number:</label>
-            <input type="text" id="card-number" name="card-number" required>
-            <label for="expiry">Expiry Date:</label>
-            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
-            <label for="cvc">CVC:</label>
-            <input type="text" id="cvc" name="cvc" required>
-            <button type="submit">Complete Purchase</button>
-        </form>
-    `;
-
-    document.querySelector('.js-checkout-form').innerHTML = checkoutFormHtml;
-
-    // Add form submission event listener
-    const checkoutForm = document.querySelector('.js-checkout-form');
-    if (checkoutForm) { // Check if the form exists
-        checkoutForm.addEventListener('submit', handleFormSubmission);
-    } else {
-        console.error("No form with id 'checkoutForm' found.");
-    }
-    
-}
-
 // Function to handle form submission and validation
 function handleFormSubmission(event) {
     event.preventDefault(); // Prevent form submission for validation
@@ -88,6 +43,56 @@ function handleFormSubmission(event) {
     alert('Order submitted successfully!');
     // Here you can add logic to send the form data to a server or perform other actions
     event.target.submit(); // Submit the form
+}
+
+// Function to display the checkout form
+function displayCheckoutForm() {
+    // Example product data (replace with dynamic data from your cart)
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add some products to checkout.');
+        return;
+    }
+
+    // Generate the product summary HTML
+    let productSummaryHtml = `<h2>Product Summary</h2><ul>`;
+    cart.forEach(product => {
+        productSummaryHtml += `<li>${product.name} - ${product.price}</li>`;
+    });
+    productSummaryHtml += `</ul>`;
+
+    // Generate the customer and payment information form
+    const checkoutFormHtml = `
+        ${productSummaryHtml}
+        <h3>Customer Information</h3>
+        <form class="js-checkout-form" onsubmit="handleFormSubmission(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <h3>Payment Information</h3>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+            <label for="expiry">Expiry Date:</label>
+            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+            <label for="cvc">CVC:</label>
+            <input type="text" id="cvc" name="cvc" required>
+            <button type="submit">Complete Purchase</button>
+        </form>
+    `;
+
+    const checkoutFormContainer = document.querySelector('form');
+    if (checkoutFormContainer) {
+        checkoutFormContainer.innerHTML = checkoutFormHtml;
+    } else {
+        console.error("No element with class 'js-checkout-form' found.");
+        return;
+    }
+
+
+    // Add the event listener to the form
+    const checkoutForm = document.querySelector('.js-checkout-form');
+    checkoutForm.addEventListener('submit', handleFormSubmission);
 }
 
 // Call the function to display the checkout form when the page loads

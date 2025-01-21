@@ -2,7 +2,7 @@ const product = [{
   "id": 1,
   "image":"images/espresso00.jpg",
   "name": "Espresso",
-  "price":"R15.99(double) / $12.99(single)",
+  "price":"R15.99(double)",
   "description":"Espresso: the heart of coffee!",
   }, {
     "id": 2,
@@ -209,9 +209,9 @@ const product = [{
 
   getItems4();
 
-
-
+  
   localStorage.clear();
+
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let cartCount = cart.length;
@@ -226,8 +226,6 @@ function updateCartIcon() {
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-
-
 
 function addToCart(productId) {
   const allProducts = [...product, ...product2, ...product3, ...product4];
