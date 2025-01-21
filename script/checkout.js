@@ -1,13 +1,11 @@
+
 // Function to display the checkout form
 function displayCheckoutForm() {
     // Example product data (replace with dynamic data from your cart)
-    const products = [
-        { name: "Espresso", quantity: 2, price: 10.00 },
-        { name: "Coffee Blend B", quantity: 1, price: 12.00 }
-    ];
+        const products = [{"id": 1, "name": "Espresso", "price": 15.99, "quantity": 2}, {"id": 2, "name": "Lungo", "price": 19.99, "quantity": 1}];
 
     // Generate the product summary HTML
-    let productSummaryHtml = `<h2>Product Summary</h2><ul>`;
+    let productSummaryHtml = `<h2 class = js-products-summary>Product Summary</h2><ul>`;
     products.forEach(product => {
         productSummaryHtml += `<li>${product.name} - ${product.quantity} x R${product.price.toFixed(2)}</li>`;
     });
@@ -33,16 +31,15 @@ function displayCheckoutForm() {
         </form>
     `;
 
-    document.querySelector(".js-checkout-form").innerHTML = checkoutFormHtml;
+    document.querySelector('.js-checkout-form').innerHTML = checkoutFormHtml;
 
-    
     // Add form submission event listener
     const checkoutForm = document.querySelector('.js-checkout-form');
-     if (checkoutForm) { // Check if the form exists
-         checkoutForm.addEventListener('submit', handleFormSubmission);
-     } else {
-         console.error("No form with class 'checkoutForm' found.");
-     }
+    if (checkoutForm) { // Check if the form exists
+        checkoutForm.addEventListener('submit', handleFormSubmission);
+    } else {
+        console.error("No form with id 'checkoutForm' found.");
+    }
     
 }
 
@@ -109,6 +106,4 @@ function displayOrderSummary() {
 
 // Call the function to display the order summary when the page loads
 displayOrderSummary();
-
-
 
