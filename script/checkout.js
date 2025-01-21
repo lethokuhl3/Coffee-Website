@@ -1,15 +1,13 @@
 // Function to handle form submission and validation
 function handleFormSubmission(event) {
-    event.preventDefault(); // Prevent form submission for validation
+    event.preventDefault(); 
 
-    // Validate Name
     const nameInput = document.getElementById('name');
     if (nameInput.value.trim() === '') {
         alert('Please enter your name.');
         return;
     }
 
-    // Validate Email
     const emailInput = document.getElementById('email');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(emailInput.value)) {
@@ -17,14 +15,12 @@ function handleFormSubmission(event) {
         return;
     }
 
-    // Validate Card Number
     const cardNumberInput = document.getElementById('card-number');
     if (cardNumberInput.value.length !== 16 || isNaN(cardNumberInput.value)) {
         alert('Please enter a valid 16-digit card number.');
         return;
     }
 
-    // Validate Expiry Date
     const expiryInput = document.getElementById('expiry');
     const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
     if (!expiryPattern.test(expiryInput.value)) {
@@ -32,36 +28,31 @@ function handleFormSubmission(event) {
         return;
     }
 
-    // Validate CVC
     const cvcInput = document.getElementById('cvc');
     if (cvcInput.value.length !== 3 || isNaN(cvcInput.value)) {
         alert('Please enter a valid 3-digit CVC.');
         return;
     }
 
-    // If all validations pass, submit the form
     alert('Order submitted successfully!');
-    // Here you can add logic to send the form data to a server or perform other actions
-    event.target.submit(); // Submit the form
+    event.target.submit(); 
 }
 
 // Function to display the checkout form
 function displayCheckoutForm() {
-    // Example product data (replace with dynamic data from your cart)
+
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         alert('Your cart is empty. Please add some products to checkout.');
         return;
     }
 
-    // Generate the product summary HTML
     let productSummaryHtml = `<h2>Product Summary</h2><ul>`;
     cart.forEach(product => {
         productSummaryHtml += `<li>${product.name} - ${product.price}</li>`;
     });
     productSummaryHtml += `</ul>`;
 
-    // Generate the customer and payment information form
     const checkoutFormHtml = `
         ${productSummaryHtml}
         <h3>Customer Information</h3>
@@ -90,12 +81,10 @@ function displayCheckoutForm() {
     }
 
 
-    // Add the event listener to the form
     const checkoutForm = document.querySelector('.js-checkout-form');
     checkoutForm.addEventListener('submit', handleFormSubmission);
 }
 
-// Call the function to display the checkout form when the page loads
 displayCheckoutForm();
 
 
@@ -109,6 +98,5 @@ function displayOrderSummary() {
     `
 }
 
-// Call the function to display the order summary when the page loads
 displayOrderSummary();
 
