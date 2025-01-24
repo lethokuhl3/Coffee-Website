@@ -89,14 +89,27 @@ displayCheckoutForm();
 
 
 function displayOrderSummary() {
-    const orderSummary = document.querySelector('.js-order-summary');
-    orderSummary.innerHTML = `
-    <h2>Order Summary</h2>
-    <p>Subtotal:R32.00</p>
-    <p>Tax: R2.00</p>
-    <p>Total: R34.00</p>
-    `
+    const cart = JSON.parse(localStorage.getItem("cart") || []);
+
+    let subtotal = 0;
+    cart.forEach(product => {
+        const price = parseFloat(product.price.replace("R", ""));
+        subtotal += price;
+    });
+
+    const taxRate = 0.0555;
+    const tax = subtotal * taxRate;
+    const total = subtotal + tax;
+
+    const orderSummaryHTML = document.querySelector('.js-order-summary');
+    orderSummaryHTML.innerHTML =
+     `
+        <h2>Order Summary</h2>
+        <p>Subtotal: R${subtotal.toFixed(2)}</p>
+        <p>Tax: R${tax.toFixed(2)}</p>
+        <p>Total: R${total.toFixed(2)}</p>
+    `;
+
 }
 
 displayOrderSummary();
-
