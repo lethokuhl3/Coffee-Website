@@ -38,7 +38,7 @@ function handleFormSubmission(event) {
     event.target.submit(); 
 }
 
-// Function to display the checkout form
+
 function displayCheckoutForm() {
 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
