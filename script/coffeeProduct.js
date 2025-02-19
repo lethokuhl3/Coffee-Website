@@ -25,7 +25,7 @@ const product = [{
   },{
     "id": 5,
     "image":"images/amerricao.jpg",
-    "name": "Americcano",
+    "name": "Americano",
     "price":"R20.00",
     "description":"Creamy perfection in every cup!",
   }]
@@ -124,38 +124,56 @@ const product = [{
     "name" : "MockTail",
     "price" : "R13.00",
     "description" : "Raise your glass to guilt-free indulgence!"
-  }]
+  }];
 
- 
+  document.addEventListener("DOMContentLoaded", function() {
+    getItems();
+    getItems2();
+    getItems3();
+    getItems4();
+    
+const buttonElements = document.querySelectorAll(".button-add");
+buttonElements.forEach((button) => {
+  button.addEventListener("click", function () {
+    const productId = button.getAttribute("data-id");
+    addToCart(productId);
+  });
+  });
+  });
 
-  function getItems() {
+    export function getItems() {
     let products = product;
     let productHTML = "";
     products.forEach(function(product) {
 
   productHTML += `
     <div class="product-card">
-    <img src="${product.image}" alt="Ethiopian Yirgacheffe">
+    <img src="${product.image}">
     <h3>${product.name}</h3>
     <p>${product.price}</p>
     <p>${product.description}</p>
     <button class="button-add" data-id="${product.id}">Add to Cart</button>
     </div>
     `});
-    
-    document.querySelector(".js-products").innerHTML = productHTML
 
+    console.log(productHTML);
+    const productContainer = document.querySelector(".js-products");
+    if (productContainer) {
+      productContainer.innerHTML = productHTML;
+  }else{
+    console.error("Element with class 'js-products' not found");
   }
-  getItems();
+  }
 
-  function getItems2() {
-    let producy = product2;
+
+  export function getItems2() {
+    let products = product2;
     let product2HTML = "";
-    producy.forEach(function(product2) {
+    products.forEach(function(product2) {
 
       product2HTML += `
       <div class="product-card">
-       <img src="${product2.image}" alt="French Roast">
+       <img src="${product2.image}">
        <h3>${product2.name}</h3>
        <p>${product2.price}</p>
        <p>${product2.description}</p>
@@ -163,71 +181,88 @@ const product = [{
    </div>`
     })
   
-    document.querySelector(".js-products2").innerHTML = product2HTML
+    console.log(product2HTML);
+    const productContainer = document.querySelector(".js-products2");
+    if (productContainer) {
+      productContainer.innerHTML = product2HTML;
+  }else{
+    console.error("Element with class 'js-products2' not found");
+  }
   }
 
-  getItems2();
 
 
-  function getItems3() {
-    let producyt = product3;
+  export function getItems3() {
+    let products = product3;
     let product3HTML = "";
-    producyt.forEach(function(product3) {
+    products.forEach(function(product3) {
 
       product3HTML += `
       <div class="product-card">
-       <img src="${product3.image}" alt="French Roast">
+       <img src="${product3.image}">
        <h3>${product3.name}</h3>
        <p>${product3.price}</p>
        <p>${product3.description}</p>
        <button class="button-add" data-id="${product3.id}">Add to Cart</button>
    </div>`
     })
-  
-    document.querySelector(".js-products3").innerHTML = product3HTML
+
+    
+    console.log(product3HTML);
+    const productContainer = document.querySelector(".js-products3");
+    if (productContainer) {
+      productContainer.innerHTML = product3HTML;
+  }else{
+    console.error("Element with class 'js-products3' not found");
   }
 
-  getItems3();
+  }
 
-  function getItems4() {
-    let producyz = product4;
+
+ export  function getItems4() {
+    let products = product4;
     let product4HTML = "";
-    producyz.forEach(function(product4) {
+    products.forEach(function(product4) {
 
       product4HTML += `
       <div class="product-card">
-       <img src="${product4.image}" alt="French Roast">
+       <img src="${product4.image}">
        <h3>${product4.name}</h3>
        <p>${product4.price}</p>
        <p>${product4.description}</p>
        <button class="button-add" data-id="${product4.id}">Add to Cart</button>
    </div>`
     });
-  
-    document.querySelector(".js-products4").innerHTML = product4HTML
+
+    
+    console.log(product4HTML);
+    const productContainer = document.querySelector(".js-products4");
+    if (productContainer) {
+      productContainer.innerHTML = product4HTML;
+  }else{
+    console.error("Element with class 'js-products4' not found");
   }
 
-  getItems4();
+  }
 
-  
   localStorage.clear();
 
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let cartCount = cart.length;
 
-function updateCartIcon() {
+ export function updateCartIcon() {
   const cartIcon = document.querySelector(".js-cart-quantity");
   if (cartIcon) {
     cartIcon.textContent = cartCount;
   }
 }
 
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+  export function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
 
-function addToCart(productId) {
+ export function addToCart(productId) {
   const allProducts = [...product, ...product2, ...product3, ...product4];
   const productToAdd = allProducts.find((item) => item.id === parseInt(productId));
 
@@ -248,13 +283,7 @@ function addToCart(productId) {
 
 }
 
-
-const buttonElements = document.querySelectorAll(".button-add");
-buttonElements.forEach((button) => {
-  button.addEventListener("click", function () {
-    const productId = button.getAttribute("data-id");
-    addToCart(productId);
-  });
-});
-
 updateCartIcon();
+
+
+
