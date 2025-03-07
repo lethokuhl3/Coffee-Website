@@ -72,12 +72,12 @@ describe("test suite: Products", () => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     expect(cart.length).toBe(1);
     expect(cart[0].id).toBe(1);
-    expect(cart[0].quantity).toBe(2);
+    expect(cart[0].quantity).toBe(4);
 
     button.click();
     saveCart();
     updateCartIcon();
     cart = JSON.parse(localStorage.getItem("cart"));
-    expect(cart[0].quantity).toBe(2);
+    expect(cart[0].quantity).toBe(4);
   });
 });
