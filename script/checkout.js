@@ -1,5 +1,5 @@
 // Function to handle form submission and validation
-function handleFormSubmission(event) {
+ export function handleFormSubmission(event) {
     event.preventDefault(); 
 
     const nameInput = document.getElementById('name');
@@ -39,7 +39,7 @@ function handleFormSubmission(event) {
 }
 
 
-function displayCheckoutForm() {
+ export function displayCheckoutForm() {
 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
@@ -56,7 +56,7 @@ function displayCheckoutForm() {
     const checkoutFormHtml = `
         ${productSummaryHtml}
         <h3>Customer Information</h3>
-        <form class="js-checkout-form" onsubmit="handleFormSubmission(event)">
+        <form class="js-checkout-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
@@ -72,24 +72,22 @@ function displayCheckoutForm() {
         </form>
     `;
 
-    const checkoutFormContainer = document.querySelector('form');
+    // Render the checkout form into a container, e.g., a div with id 'checkout-container'
+    const checkoutFormContainer = document.getElementById('checkout-container');
     if (checkoutFormContainer) {
         checkoutFormContainer.innerHTML = checkoutFormHtml;
+        const checkoutForm = checkoutFormContainer.querySelector('.js-checkout-form');
+        checkoutForm.addEventListener('submit', handleFormSubmission);
     } else {
-        console.error("No element with class 'js-checkout-form' found.");
+        console.error("No element with id 'checkout-container' found.");
         return;
     }
-
-
-    const checkoutForm = document.querySelector('.js-checkout-form');
-    checkoutForm.addEventListener('submit', handleFormSubmission);
 }
 
 displayCheckoutForm();
 
-
 function displayOrderSummary() {
-    const cart = JSON.parse(localStorage.getItem("cart") || []);
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     let subtotal = 0;
     cart.forEach(product => {
@@ -102,14 +100,14 @@ function displayOrderSummary() {
     const total = subtotal + tax;
 
     const orderSummaryHTML = document.querySelector('.js-order-summary');
-    orderSummaryHTML.innerHTML =
-     `
-        <h2>Order Summary</h2>
-        <p>Subtotal: R${subtotal.toFixed(2)}</p>
-        <p>Tax: R${tax.toFixed(2)}</p>
-        <p>Total: R${total.toFixed(2)}</p>
-    `;
-
+    if (orderSummaryHTML) {
+        orderSummaryHTML.innerHTML =
+        `
+            <h2>Order Summary</h2>
+            <p>Subtotal: R${subtotal.toFixed(2)}</p>
+            <p>Tax: R${tax.toFixed(2)}</p>
+            <p>Total: R${total.toFixed(2)}</p>
+        `;
+    }
 }
-
 displayOrderSummary();

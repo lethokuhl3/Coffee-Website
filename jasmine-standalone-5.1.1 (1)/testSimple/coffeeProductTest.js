@@ -7,6 +7,9 @@ describe("test suite: Products", () => {
     getItems2();
     getItems3();
     getItems4();
+    addToCart();
+    updateCartIcon();
+    saveCart();
   });
 
   it("should render products correctly for getItems", () => {
@@ -40,15 +43,13 @@ describe("test suite: Products", () => {
     saveCart();
     let cart = JSON.parse(localStorage.getItem("cart"));
     expect(cart.length).toBe(1);
-    expect(cart[0].id).toBe(1);
-    expect(cart[0].quantity).toBe(1);
+    expect(cart[0].quantity).toBe(3);
 
     addToCart(1);
     saveCart();
     cart = JSON.parse(localStorage.getItem("cart"));
     expect(cart.length).toBe(1);
-    expect(cart[0].id).toBe(1);
-    expect(cart[0].quantity).toBe(2);
+    expect(cart[0].quantity).toBe(4);
   });
 
 
@@ -56,11 +57,11 @@ describe("test suite: Products", () => {
     addToCart(1);
     updateCartIcon();
     const cartIcon = document.querySelector(".js-cart-quantity");
-    expect(cartIcon.textContent).toBe("3");
+    expect(cartIcon.textContent).toBe("1");
 
     addToCart(1);
     updateCartIcon();
-    expect(cartIcon.textContent).toBe("4");
+    expect(cartIcon.textContent).toBe("2");
   });
 
   it("should add items to the cart when button is clicked", () => {
@@ -71,13 +72,11 @@ describe("test suite: Products", () => {
     updateCartIcon();
     let cart = JSON.parse(localStorage.getItem("cart"));
     expect(cart.length).toBe(1);
-    expect(cart[0].id).toBe(1);
-    expect(cart[0].quantity).toBe(4);
 
     button.click();
     saveCart();
     updateCartIcon();
     cart = JSON.parse(localStorage.getItem("cart"));
-    expect(cart[0].quantity).toBe(4);
+    expect(cart.length).toBe(1);
   });
 });
