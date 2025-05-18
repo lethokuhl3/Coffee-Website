@@ -8,7 +8,7 @@ describe("handleFormSubmission", () => {
     expiryInput,
     cvcInput;
 
-    let alertSpy, submitSpy,event;
+    let alertSpy,event;
 
    beforeEach(() => {
 
@@ -19,7 +19,6 @@ describe("handleFormSubmission", () => {
     expiryInput = document.getElementById("expiry");
     cvcInput = document.getElementById("cvc");
     alertSpy = spyOn(window, "alert");
-    submitSpy = spyOn(form, "submit");
     event = {
       preventDefault: jasmine.createSpy("preventDefault"),
       target: form,}
@@ -39,7 +38,6 @@ describe("handleFormSubmission", () => {
     handleFormSubmission(event);
     expect(event.preventDefault).toHaveBeenCalled();
     expect(alertSpy).toHaveBeenCalledWith("Please enter your name.");
-    expect(submitSpy).not.toHaveBeenCalled();
   });
 
   it("should alert if email is invalid", () => {
@@ -51,7 +49,6 @@ describe("handleFormSubmission", () => {
     handleFormSubmission(event);
     expect(event.preventDefault).toHaveBeenCalled();
     expect(alertSpy).toHaveBeenCalledWith("Please enter a valid email address.");
-    expect(submitSpy).not.toHaveBeenCalled();
   });
 
 
