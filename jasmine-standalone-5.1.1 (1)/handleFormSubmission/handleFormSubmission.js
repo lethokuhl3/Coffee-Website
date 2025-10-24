@@ -13,8 +13,8 @@ describe("handleFormSubmission", () => {
    beforeEach(() => {
 
     form = document.getElementById("checkout-form");
-    nameInput = document.getElementById("name");
-    emailInput = document.getElementById("email");  
+    nameInput.value = document.getElementById("name");
+    emailInput.value = document.getElementById("email");  
     cardNumberInput = document.getElementById("card-number");
     expiryInput = document.getElementById("expiry");
     cvcInput = document.getElementById("cvc");
@@ -32,20 +32,20 @@ describe("handleFormSubmission", () => {
   it("should alert if name is empty", () => {
     nameInput.value = "";
     emailInput.value = "test@example.com";
-    cardNumberInput.value = "1234567812345678";
-    expiryInput.value = "12/25";
-    cvcInput.value = "123";
+    cardNumberInput = "1234567812345678";
+    expiryInput = "12/25";
+    cvcInput = "123";
     handleFormSubmission(event);
     expect(event.preventDefault).toHaveBeenCalled();
     expect(alertSpy).toHaveBeenCalledWith("Please enter your name.");
   });
 
   it("should alert if email is invalid", () => {
-    nameInput.value = "John Doe";
-    emailInput.value = "invalid-email";
-    cardNumberInput.value = "1234567812345678";
-    expiryInput.value = "12/25";
-    cvcInput.value = "123";
+    nameInput = "John Doe";
+    emailInput = "invalid-email";
+    cardNumberInput = "1234567812345678";
+    expiryInput = "12/25";
+    cvcInput = "123";
     handleFormSubmission(event);
     expect(event.preventDefault).toHaveBeenCalled();
     expect(alertSpy).toHaveBeenCalledWith("Please enter a valid email address.");
