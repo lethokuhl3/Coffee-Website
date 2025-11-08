@@ -1,59 +1,57 @@
 // Function to handle form submission and validation
- export function handleFormSubmission(event) {
-    event.preventDefault(); 
+function handleFormSubmission(event) {
+  event.preventDefault();
 
-    const nameInput = document.getElementById('name');
-    if (nameInput.value.trim() === '') {
-        alert('Please enter your name.');
-        return;
-    }
+  const nameInput = document.getElementById("name");
+  if (nameInput.value.trim() === "") {
+    alert("Please enter your name.");
+    return;
+  }
 
-    const emailInput = document.getElementById('email');
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(emailInput.value)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
+  const emailInput = document.getElementById("email");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(emailInput.value)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
 
-    const cardNumberInput = document.getElementById('card-number');
-    if (cardNumberInput.value.length !== 16 || isNaN(cardNumberInput.value)) {
-        alert('Please enter a valid 16-digit card number.');
-        return;
-    }
+  const cardNumberInput = document.getElementById("card-number");
+  if (cardNumberInput.value.length !== 16 || isNaN(cardNumberInput.value)) {
+    alert("Please enter a valid 16-digit card number.");
+    return;
+  }
 
-    const expiryInput = document.getElementById('expiry');
-    const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    if (!expiryPattern.test(expiryInput.value)) {
-        alert('Please enter a valid expiry date (MM/YY).');
-        return;
-    }
+  const expiryInput = document.getElementById("expiry");
+  const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  if (!expiryPattern.test(expiryInput.value)) {
+    alert("Please enter a valid expiry date (MM/YY).");
+    return;
+  }
 
-    const cvcInput = document.getElementById('cvc');
-    if (cvcInput.value.length !== 3 || isNaN(cvcInput.value)) {
-        alert('Please enter a valid 3-digit CVC.');
-        return;
-    }
+  const cvcInput = document.getElementById("cvc");
+  if (cvcInput.value.length !== 3 || isNaN(cvcInput.value)) {
+    alert("Please enter a valid 3-digit CVC.");
+    return;
+  }
 
-    alert('Order submitted successfully!');
-    event.target.submit(); 
+  alert("Order submitted successfully!");
+  event.target.submit();
 }
 
+function displayCheckoutForm() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cart.length === 0) {
+    alert("Your cart is empty. Please add some products to checkout.");
+    return;
+  }
 
- export function displayCheckoutForm() {
+  let productSummaryHtml = `<h2>Product Summary</h2><ul>`;
+  cart.forEach((product) => {
+    productSummaryHtml += `<li>${product.name} - ${product.price}</li>`;
+  });
+  productSummaryHtml += `</ul>`;
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length === 0) {
-        alert('Your cart is empty. Please add some products to checkout.');
-        return;
-    }
-
-    let productSummaryHtml = `<h2>Product Summary</h2><ul>`;
-    cart.forEach(product => {
-        productSummaryHtml += `<li>${product.name} - ${product.price}</li>`;
-    });
-    productSummaryHtml += `</ul>`;
-
-    const checkoutFormHtml = `
+  const checkoutFormHtml = `
         ${productSummaryHtml}
         <h3>Customer Information</h3>
         <form class="js-checkout-form">
@@ -72,42 +70,44 @@
         </form>
     `;
 
-    // Render the checkout form into a container, e.g., a div with id 'checkout-container'
-    const checkoutFormContainer = document.getElementById('checkout-container');
-    if (checkoutFormContainer) {
-        checkoutFormContainer.innerHTML = checkoutFormHtml;
-        const checkoutForm = checkoutFormContainer.querySelector('.js-checkout-form');
-        checkoutForm.addEventListener('submit', handleFormSubmission);
-    } else {
-        console.error("No element with id 'checkout-container' found.");
-        return;
-    }
+  // Render the checkout form into a container, e.g., a div with id 'checkout-container'
+  const checkoutFormContainer = document.querySelector(".checkout-container");
+  if (checkoutFormContainer) {
+    checkoutFormContainer.innerHTML = checkoutFormHtml;
+    const checkoutForm =
+      checkoutFormContainer.querySelector(".js-checkout-form");
+    checkoutForm.addEventListener("submit", handleFormSubmission);
+  } else {
+    console.error("No element with id 'checkout-container' found.");
+    return;
+  }
 }
 
 displayCheckoutForm();
 
 function displayOrderSummary() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let subtotal = 0;
-    cart.forEach(product => {
-        const price = parseFloat(product.price.replace("R", ""));
-        subtotal += price;
-    });
+  let subtotal = 0;
+  cart.forEach((product) => {
+    const price = parseFloat(product.price.replace("R", ""));
+    subtotal += price;
+  });
 
-    const taxRate = 0.0555;
-    const tax = subtotal * taxRate;
-    const total = subtotal + tax;
+  const taxRate = 0.0555;
+  const tax = subtotal * taxRate;
+  const total = subtotal + tax;
 
-    const orderSummaryHTML = document.querySelector('.js-order-summary');
-    if (orderSummaryHTML) {
-        orderSummaryHTML.innerHTML =
-        `
+  const orderSummaryHTML = document.querySelector(
+    ".js-order-summary .order-summary"
+  );
+  if (orderSummaryHTML) {
+    orderSummaryHTML.innerHTML = `
             <h2>Order Summary</h2>
             <p>Subtotal: R${subtotal.toFixed(2)}</p>
             <p>Tax: R${tax.toFixed(2)}</p>
             <p>Total: R${total.toFixed(2)}</p>
         `;
-    }
+  }
 }
 displayOrderSummary();
