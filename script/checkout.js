@@ -98,9 +98,7 @@ function displayOrderSummary() {
   const tax = subtotal * taxRate;
   const total = subtotal + tax;
 
-  const orderSummaryHTML = document.querySelector(
-    ".js-order-summary .order-summary"
-  );
+  const orderSummaryHTML = document.querySelector(".order-summary-container");
   if (orderSummaryHTML) {
     orderSummaryHTML.innerHTML = `
             <h2>Order Summary</h2>
@@ -108,6 +106,8 @@ function displayOrderSummary() {
             <p>Tax: R${tax.toFixed(2)}</p>
             <p>Total: R${total.toFixed(2)}</p>
         `;
+  } else {
+    console.error("No element with class 'js-order-summary' found.");
   }
 }
 displayOrderSummary();
