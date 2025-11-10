@@ -107,7 +107,7 @@ function displayOrderSummary() {
             <p>Total: R${total.toFixed(2)}</p>
         `;
   } else {
-    console.error("No element with class 'js-order-summary' found.");
+    console.error("No element with class 'order-summary-container' found.");
   }
 }
 displayOrderSummary();
