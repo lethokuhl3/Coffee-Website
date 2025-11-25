@@ -66,7 +66,7 @@ function displayCheckoutForm() {
             <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
             <label for="cvc">CVC:</label>
             <input type="text" id="cvc" name="cvc" required>
-            <button type="submit">Complete Purchase</button>
+            <button  type="submit">Complete Purchase</button>
         </form>
     `;
 
