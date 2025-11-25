@@ -90,21 +90,24 @@ function displayOrderSummary() {
 
   let subtotal = 0;
   cart.forEach((product) => {
-    const price = parseFloat(product.price.replace("R", ""));
-    subtotal += price;
+    const numeric = Number(String(product.price).replace(/[^\d.-]+/g, ""));
+    if (!Number.isNaN(numeric)) subtotal += numeric;
   });
 
   const taxRate = 0.0555;
   const tax = subtotal * taxRate;
   const total = subtotal + tax;
-
+  const fmt = new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+  });
   const orderSummaryHTML = document.querySelector(".order-summary-container");
   if (orderSummaryHTML) {
     orderSummaryHTML.innerHTML = `
             <h2>Order Summary</h2>
-            <p>Subtotal: R${subtotal.toFixed(2)}</p>
-            <p>Tax: R${tax.toFixed(2)}</p>
-            <p>Total: R${total.toFixed(2)}</p>
+            <p>Subtotal: ${fmt.format(subtotal)}</p>
+            <p>Tax: ${fmt.format(tax)}</p>
+            <p>Total: ${fmt.format(total)}</p>
         `;
   } else {
     console.error("No element with class 'order-summary-container' found.");
