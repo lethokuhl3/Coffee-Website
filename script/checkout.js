@@ -1,5 +1,5 @@
 // Function to handle form submission and validation
-function handleFormSubmission(event) {
+export function handleFormSubmission(event) {
   event.preventDefault();
 
   const nameInput = document.getElementById("name");

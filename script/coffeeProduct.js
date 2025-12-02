@@ -249,7 +249,6 @@ export function getItems4() {
    </div>`;
   });
 
-  console.log(product4HTML);
   const productContainer = document.querySelector(".js-products4");
   if (productContainer) {
     productContainer.innerHTML = product4HTML;
