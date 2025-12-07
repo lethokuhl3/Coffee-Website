@@ -180,7 +180,6 @@ export function getItems() {
     `;
   });
 
-  console.log(productHTML);
   const productContainer = document.querySelector(".js-products");
   if (productContainer) {
     productContainer.innerHTML = productHTML;
@@ -203,7 +202,6 @@ export function getItems2() {
    </div>`;
   });
 
-  console.log(product2HTML);
   const productContainer = document.querySelector(".js-products2");
   if (productContainer) {
     productContainer.innerHTML = product2HTML;
@@ -226,7 +224,6 @@ export function getItems3() {
    </div>`;
   });
 
-  console.log(product3HTML);
   const productContainer = document.querySelector(".js-products3");
   if (productContainer) {
     productContainer.innerHTML = product3HTML;
