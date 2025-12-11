@@ -1,5 +1,5 @@
 // Function to handle form submission and validation
-export function handleFormSubmission(event) {
+ export function handleFormSubmission(event) {
   event.preventDefault();
 
   const nameInput = document.getElementById("name");
@@ -101,7 +101,7 @@ function displayOrderSummary() {
     style: "currency",
     currency: "ZAR",
   });
-  const orderSummaryHTML = document.querySelector(".order-summary-container");
+  const orderSummaryHTML = document.querySelector(".js-order-summary");
   if (orderSummaryHTML) {
     orderSummaryHTML.innerHTML = `
             <h2>Order Summary</h2>
@@ -110,7 +110,7 @@ function displayOrderSummary() {
             <p>Total: ${fmt.format(total)}</p>
         `;
   } else {
-    console.error("No element with class 'order-summary-container' found.");
+    console.error("No element with class 'js-order-summary' found.");
   }
 }
 displayOrderSummary();
